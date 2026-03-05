@@ -1,17 +1,22 @@
+using BackofficeAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Configuración de servicios
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configuración del pipeline HTTP
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage(); // Muestra detalles de errores en desarrollo
     app.UseSwagger();
     app.UseSwaggerUI();
 }
