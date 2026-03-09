@@ -9,5 +9,8 @@ namespace BackofficeAPI.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Mensajero> Mensajero { get; set; }
+        public DbSet<Client> Cliente { get; set; }
+        public DbSet<Paquete> Paquete  { get; set; }
+        public DbSet<Recaudo> Recaudo { get; set; }
     }
 }
